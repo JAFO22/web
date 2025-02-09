@@ -6,6 +6,52 @@
   
   <meta name="google-adsense-account" content="ca-pub-4704501585981299">
 
+  <style>
+	body {
+		background-image: url('LaNocheEstrellada.jpg'); /* Tu imagen de fondo */
+		background-size: cover;
+		background-position: center;
+		background-attachment: fixed;
+		background-repeat: no-repeat;
+		overflow: hidden;
+		margin: 0;
+		height: 100vh;
+	}
+
+	.heart {
+		position: absolute;
+		bottom: -10px;
+		font-size: 20px;
+		color: red;
+		animation: float 4s linear infinite;
+		pointer-events: none;
+		z-index: 2;
+	}
+
+	@keyframes float {
+		0% {
+			transform: translateY(0) scale(1);
+			opacity: 1;
+		}
+		50% {
+			opacity: 0.7;
+		}
+		100% {
+			transform: translateY(-100vh) scale(1.5);
+			opacity: 0;
+		}
+	}
+
+	@media (max-width: 768px) { /* Para móviles */
+		body {
+			background-size: contain;
+		}
+		.heart {
+			font-size: 15px;
+		}
+	}
+</style>
+
 </head>
 <body>
 <!-- partial:index.partial.html -->
@@ -19,14 +65,7 @@
 }
 body  {
 	font-family: "Quicksand", sans-serif;
-    
-    background-image: url('LaNocheEstrellada.jpg');
-    background-size: cover; /* Para que cubra toda la pantalla */
-    background-position: center; /* Centrar la imagen */
-    background-repeat: no-repeat; /* No repetir la imagen */
-
-    
-
+ 
 	color: #333;
 	display: flex;
 	justify-content: center;
@@ -320,7 +359,7 @@ body  {
 
 
 <audio id="music" loop>
-	<source src="Los Milagro, Ed Maverick - Mis Errores (Demo Filtrado)(Letra).mp3" type="audio/mpeg">
+	<source src="Juanes - Es Por Ti (Letra).mp3" type="audio/mpeg">
 </audio> 
 
 <script>
@@ -342,6 +381,26 @@ body  {
 	});
 </script>
 
+<script>
+    function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "❤️";
+        document.body.appendChild(heart);
+
+        // Posición aleatoria en la pantalla
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.fontSize = Math.random() * 20 + 10 + "px"; // Tamaño aleatorio
+
+        // Elimina el corazón después de la animación
+        setTimeout(() => {
+            heart.remove();
+        }, 4000);
+    }
+
+    // Generar corazones cada 300ms
+    setInterval(createHeart, 300);
+</script>
 
 </body>
 </html>
